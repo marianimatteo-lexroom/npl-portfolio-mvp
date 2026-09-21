@@ -400,7 +400,7 @@ export default function App() {
             </div>
 
             <div className="overflow-x-auto rounded border border-slate-200 bg-white">
-              <table className="w-full min-w-[1180px] border-collapse text-left text-sm">
+              <table className="w-full min-w-[1280px] border-collapse text-left text-sm">
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50 text-xs text-slate-500">
                     <th className="px-3 py-2 font-medium">Stato</th>
@@ -450,7 +450,7 @@ export default function App() {
                             placeholder="mancante"
                           />
                         </td>
-                        <td className="px-3 py-2 text-sm text-slate-600">{r.fields.creditore}</td>
+                        <td className="px-3 py-2 text-sm whitespace-nowrap text-slate-600">{r.fields.creditore}</td>
                         <td className="px-3 py-2">
                           <span className="flex items-center text-sm">
                             <FieldInput
@@ -485,7 +485,7 @@ export default function App() {
                         </td>
                         <td className="px-3 py-2">
                           {r.draftText ? (
-                            <div className="flex flex-col gap-1">
+                            <div className="flex min-w-[9.5rem] flex-col gap-1">
                               <button
                                 onClick={() => openDrawer(r.id)}
                                 className="inline-flex items-center gap-1 text-xs font-medium hover:brightness-110"
@@ -494,16 +494,16 @@ export default function App() {
                                 <Eye className="h-3.5 w-3.5" />
                                 Anteprima
                               </button>
-                              <div className="flex gap-1">
+                              <div className="flex flex-nowrap gap-1">
                                 <button
                                   onClick={() => setReview(r.id, "approvato")}
-                                  className="rounded-sm border border-emerald-200 bg-emerald-50 px-1.5 py-0.5 text-[11px] text-emerald-800 hover:bg-emerald-100"
+                                  className="whitespace-nowrap rounded-sm border border-emerald-200 bg-emerald-50 px-1.5 py-0.5 text-[11px] text-emerald-800 hover:bg-emerald-100"
                                 >
                                   Approva
                                 </button>
                                 <button
                                   onClick={() => setReview(r.id, "rifiutato")}
-                                  className="rounded-sm border border-rose-200 bg-rose-50 px-1.5 py-0.5 text-[11px] text-rose-800 hover:bg-rose-100"
+                                  className="whitespace-nowrap rounded-sm border border-rose-200 bg-rose-50 px-1.5 py-0.5 text-[11px] text-rose-800 hover:bg-rose-100"
                                 >
                                   Rifiuta
                                 </button>
