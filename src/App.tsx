@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildInitialRows } from "./data/portfolio";
 import {
+  API_PANEL_LINE,
   BOOKING_URL,
   BRAND,
   DOC_TYPES,
@@ -301,7 +302,7 @@ export default function App() {
               <span className="h-5 w-px bg-slate-200" />
               <h1 className="font-serif text-xl text-slate-900">NPL / debt collection</h1>
             </div>
-            <p className="mt-1 max-w-3xl text-sm text-slate-500">{LANDING_HOOK}</p>
+            <p className="mt-1 max-w-4xl text-sm text-slate-500">{LANDING_HOOK}</p>
           </div>
           <div className="flex items-center gap-2">
             {allLoaded && (
@@ -313,16 +314,7 @@ export default function App() {
                 Ricomincia
               </button>
             )}
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-sm px-3 py-1.5 text-sm font-medium text-white hover:brightness-110"
-              style={{ backgroundColor: BRAND }}
-            >
-              <Calendar className="h-3.5 w-3.5" />
-              Prenota una call
-            </a>
+            <GtmCtas compact />
           </div>
         </div>
 
@@ -365,6 +357,8 @@ export default function App() {
               <MetricCard label="Da revisionare" value={pendingReview} />
               <MetricCard label="Approvate" value={approvedCount} />
             </div>
+
+            <ApiHonestyPanel />
 
             <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded border border-slate-200 bg-white px-4 py-3">
               <p className="text-sm text-slate-600">
@@ -635,6 +629,66 @@ export default function App() {
   );
 }
 
+function GtmCtas({ compact = false }: { compact?: boolean }) {
+  const btn = compact ? "px-3 py-1.5 text-sm" : "px-4 py-2.5 text-sm";
+  return (
+    <div className={`flex flex-wrap items-center gap-2 ${compact ? "" : "sm:flex-nowrap"}`}>
+      <a
+        href={BOOKING_URL}
+        target="_blank"
+        rel="noreferrer"
+        className={`inline-flex items-center justify-center gap-1.5 rounded-sm font-medium text-white hover:brightness-110 ${btn}`}
+        style={{ backgroundColor: BRAND }}
+      >
+        Avvia free API POC
+      </a>
+      <a
+        href={BOOKING_URL}
+        target="_blank"
+        rel="noreferrer"
+        className={`inline-flex items-center justify-center gap-1.5 rounded-sm border border-slate-200 font-medium text-slate-700 hover:bg-slate-50 ${btn}`}
+      >
+        <Calendar className="h-3.5 w-3.5" />
+        Prenota una call
+      </a>
+    </div>
+  );
+}
+
+function ApiHonestyPanel() {
+  return (
+    <div
+      id="api-poc"
+      className="mb-4 rounded border border-slate-200 bg-white px-4 py-3 sm:px-5 sm:py-4"
+    >
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="rounded-sm border border-amber-200 bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-900">
+          Demo UI — non API live
+        </span>
+        <h3 className="font-serif text-sm text-slate-900">Come si mappa su Lexroom API</h3>
+      </div>
+      <p className="mt-2 text-sm leading-relaxed text-slate-600">{API_PANEL_LINE}</p>
+      <div className="mt-3 grid gap-2 text-xs text-slate-500 sm:grid-cols-3">
+        <div className="rounded border border-slate-100 bg-slate-50 px-3 py-2">
+          <div className="font-medium text-slate-800">Drafting</div>
+          <div className="mt-0.5 font-mono">POST /drafts · placeholder</div>
+          <div>placeholder — bozze da portafoglio</div>
+        </div>
+        <div className="rounded border border-slate-100 bg-slate-50 px-3 py-2">
+          <div className="font-medium text-slate-800">Research</div>
+          <div className="mt-0.5 font-mono">POST /research · placeholder</div>
+          <div>a supporto — estrazione campi</div>
+        </div>
+        <div className="rounded border border-slate-100 bg-slate-50 px-3 py-2">
+          <div className="font-medium text-slate-800">Output</div>
+          <div className="mt-0.5 font-mono">JSON / DOC / PDF</div>
+          <div>qui si collega il POC</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Landing({
   uploading,
   onDemo,
@@ -645,7 +699,7 @@ function Landing({
   onUpload: () => void;
 }) {
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl space-y-4">
       <div className="rounded border border-slate-200 bg-white px-8 py-10">
         <p className="text-xs font-medium tracking-wide text-slate-500 uppercase">Lexroom · fabbrica legale</p>
         <h2 className="mt-3 font-serif text-2xl leading-snug text-slate-900 sm:text-3xl">{LANDING_HOOK}</h2>
@@ -666,7 +720,15 @@ function Landing({
           ))}
         </div>
 
-        <div className="mt-8 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+        <div className="mt-6">
+          <GtmCtas />
+        </div>
+      </div>
+
+      <ApiHonestyPanel />
+
+      <div className="rounded border border-slate-200 bg-white px-8 py-6">
+        <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
           <button
             onClick={onDemo}
             className="inline-flex flex-1 items-center justify-center gap-2 rounded-sm px-4 py-2.5 text-sm font-medium text-white transition hover:brightness-110"

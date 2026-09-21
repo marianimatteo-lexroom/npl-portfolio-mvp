@@ -5,7 +5,10 @@ export const BRAND = "#0F4C9D";
 export const BOOKING_URL = "https://calendar.app.google/XZfGdvvF3jZHKibW9";
 
 export const LANDING_HOOK =
-  "Fabbrica legale per NPL e debt collection: carica il portafoglio, genera le bozze, revisiona e esporta.";
+  "Fabbrica legale per NPL e debt collection: dal portafoglio alle bozze, via Lexroom API nei vostri sistemi — non un altro posto a sedere in chat.";
+
+export const API_PANEL_LINE =
+  "Demo UI — non API live. In produzione i vostri sistemi chiamano Lexroom API REST (Drafting; Research a supporto); output JSON / DOC / PDF. Il POC gratuito si aggancia qui.";
 
 export const DOC_TYPES: {
   id: DocTypeId;
